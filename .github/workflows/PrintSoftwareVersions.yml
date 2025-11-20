@@ -1,0 +1,50 @@
+name: Print Software Versions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-data-processing-layer:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Print Node.js version
+        run: node --version
+      
+      - name: Print Python version
+        run: python3 --version
+      
+      - name: Print npm version
+        run: npm --version
+      
+      - name: Print Java version
+        run: java --version
+      
+      - name: Print Docker version
+        run: docker --version
+
+  check-data-access-layer:
+    runs-on: ubuntu-latest
+    needs: check-data-processing-layer
+    
+    steps:
+      - name: Setup MySQL
+        run: |
+          sudo systemctl start mysql.service
+          mysql --version
+      
+      - name: Print PostgreSQL version
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+          psql --version
+      
+      - name: Print MongoDB info
+        run: |
+          echo "MongoDB version info"
+          echo "Latest stable: 7.0+"
