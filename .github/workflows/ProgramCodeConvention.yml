@@ -20,4 +20,4 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_PYTHON_PYLINT: true
-          FILTER_REGEX_INCLUDE: .*ProgramCode\.py
+          FILTER_REGEX_INCLUDE: .*ProgramCodeModified\.py
